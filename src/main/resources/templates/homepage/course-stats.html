@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Course Management</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>Course Statistics</h3>
+	<hr>
+
+	<a th:href="@{/homepage/browse_courses}"
+	   class="btn btn-primary btn-sm mb-3">
+		Back
+	</a>
+
+	<!-- Logout button -->
+	<a th:href="@{/logout}"
+	   class="btn btn-primary btn-sm mb-3">
+		Logout
+	</a>
+
+	<h3>Project stats</h3>
+	<hr>
+	
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>Mean</th>
+				<th>Median</th>
+				<th>Min</th>
+				<th>Max</th>
+				<th>Successful percentile</th>
+				<th>SD</th>
+				<th>Skewness</th>
+				<th>Kurtosis</th>
+				<th>Variance</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr>
+			
+				<td th:text="${projectStats.get('mean')}" />
+				<td th:text="${projectStats.get('median')}" />
+				<td th:text="${projectStats.get('min')}" />
+				<td th:text="${projectStats.get('max')}" />
+				<td th:text="${projectStats.get('percentiles')}" />
+				<td th:text="${#numbers.formatDecimal(projectStats.get('standard deviation'), 1, 3, 'POINT')}" />
+				<td th:text="${#numbers.formatDecimal(projectStats.get('skewness'), 1, 3, 'POINT')}" />
+				<td th:text="${#numbers.formatDecimal(projectStats.get('kurtosis'), 1, 3, 'POINT')}" />
+				<td th:text="${#numbers.formatDecimal(projectStats.get('variance'), 1, 3, 'POINT')}" />
+
+			</tr>
+		</tbody>		
+	</table>
+
+	<h3>Exam stats</h3>
+	<hr>
+
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+		<tr>
+			<th>Mean</th>
+			<th>Median</th>
+			<th>Min</th>
+			<th>Max</th>
+			<th>Successful percentile</th>
+			<th>SD</th>
+			<th>Skewness</th>
+			<th>Kurtosis</th>
+			<th>Variance</th>
+		</tr>
+		</thead>
+
+		<tbody>
+		<tr>
+
+			<td th:text="${examStats.get('mean')}" />
+			<td th:text="${examStats.get('median')}" />
+			<td th:text="${examStats.get('min')}" />
+			<td th:text="${examStats.get('max')}" />
+			<td th:text="${examStats.get('percentiles')}" />
+			<td th:text="${#numbers.formatDecimal(examStats.get('standard deviation'), 1, 3, 'POINT')}" />
+			<td th:text="${#numbers.formatDecimal(examStats.get('skewness'), 1, 3, 'POINT')}" />
+			<td th:text="${#numbers.formatDecimal(examStats.get('kurtosis'), 1, 3, 'POINT')}" />
+			<td th:text="${#numbers.formatDecimal(examStats.get('variance'), 1, 3, 'POINT')}" />
+
+		</tr>
+		</tbody>
+	</table>
+	
+</div>
+	
+</body>
+</html>
+
+
+

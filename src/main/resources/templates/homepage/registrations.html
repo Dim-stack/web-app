@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Course Management</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>Student Directory</h3>
+	<hr>
+	
+	<!-- Add course button -->
+	<a th:href="@{/homepage/add_registration(courseId=${courseId})}"
+		class="btn btn-primary btn-sm mb-3">
+		Add Student
+	</a>
+
+	<a th:href="@{/homepage/browse_courses}"
+		class="btn btn-primary btn-sm mb-3">
+		Back
+	</a>
+
+	<!-- Logout button -->
+	<a th:href="@{/logout}"
+	   class="btn btn-primary btn-sm mb-3">
+		Logout
+	</a>
+	
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>Student ID</th>
+				<th>Student Name</th>
+				<th>Email</th>
+				<th>Year</th>
+				<th>Project Grade</th>
+				<th>Exam Grade</th>
+				<th>Options</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="registration : ${registrations}">
+
+				<td th:text="${registration.studentId}" />
+				<td th:text="${registration.name}" />
+				<td th:text="${registration.email}" />
+				<td th:text="${registration.year}" />
+				<td th:text="${registration.projectGrade}" />
+				<td th:text="${registration.examGrade}" />
+
+				<td>
+					<!-- Add "update" button/link -->
+					<a th:href="@{/homepage/update_registration(courseId=${courseId}, studentId=${registration.studentId})}"
+					   class="btn btn-info btn-sm">
+						Edit
+					</a>
+					
+					<!-- Add "delete" button/link -->					
+					<a th:href="@{/homepage/delete_registration(courseId=${courseId}, studentId=${registration.studentId})}"
+					   class="btn btn-danger btn-sm"
+					   onclick="if (!(confirm('Are you sure you want to delete this student?'))) return false">
+						Delete
+					</a>
+					
+				</td>
+				
+				
+			</tr>
+		</tbody>		
+	</table>
+	
+</div>
+	
+</body>
+</html>
+
+
+
